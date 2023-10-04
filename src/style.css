@@ -1,0 +1,9 @@
+:root {
+  --height: 76px;
+  --white: #fff;
+  --light: #fafafa;
+  --dark: #111;
+  --black: #000;
+  --primary: #01A7FD;
+  --grey: rgba(17, 17, 17, 0.48);
+}

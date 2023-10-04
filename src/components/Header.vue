@@ -15,7 +15,7 @@
         rel="noopener noreferrer"
       >
         <img
-          src="logo.png"
+          src="/logo.png"
           width="93"
           height="29"
           alt="logo"

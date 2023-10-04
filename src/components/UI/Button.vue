@@ -1,21 +1,20 @@
-<script>
-  export default {
-    name: "Button",
-    props: {
-      label: "",
-      color: "",
-      textColor: "",
-      width: "",
-      height: "",
-      fontSize: "",
-      outline: true,
-    },
-  };
+<script setup>
+  import IconPlus from "@/assets/icons/IconPlus.vue";
+  const props = defineProps({
+    label: String,
+    color: String,
+    textColor: String,
+    height: String,
+    width: String,
+    fontSize: String,
+    plus: Boolean,
+  });
 </script>
 
 <template>
   <button
-    class="btn"
+    :class="['btn', plus ? 'plus' : '']"
+    :plus="plus"
     :style="`
       background-color: ${color};
       color: ${textColor};
@@ -24,36 +23,56 @@
       font-size: ${fontSize};
   `"
   >
+    <template v-if="plus">
+      <IconPlus />
+    </template>
     {{ label || "Button" }}
   </button>
 </template>
 
 <style lang="scss" scoped>
   .btn {
-  padding: 7px 10px;
-  font-size: 24px;
-  line-height: 28px;
-  font-weight: 400;
-  border: none;
-  cursor: pointer;
-  border-radius: 10px;
-  color: var(--default);
-  background: linear-gradient(219.3deg, #caeea2 0%, #c1e921 100%);
-  transition: all 0.1s;
-  height: 55px;
+    padding: 10px 20px;
+    font-size: 14px;
+    line-height: 24px;
+    font-weight: 400;
+    border: none;
+    cursor: pointer;
+    border-radius: 100px;
+    color: var(--white);
+    background-color: var(--primary);
+    height: 44px;
 
-  &:focus {
-    outline: 2px solid lightskyblue;
-  }
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 5px 0 var(--primary);
+    }
 
-  &:active {
-    box-shadow: 0 0 5px inset;
-  }
+    &:active {
+      box-shadow: 0 0 5px inset;
+    }
 
-  &.outline {
-    background: transparent;
-    padding: 5px;
-    border: 2px solid #7ee921;
+    &.outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      line-height: 1.5;
+    }
+
+    &.text {
+      background-color: transparent;
+      color: var(--primary);
+      padding: 1px 2px;
+      line-height: 1.5;
+
+      border-radius: 5px;
+      height: 24px;
+    }
+
+    &.plus {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
   }
-}
 </style>

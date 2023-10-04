@@ -1,6 +1,17 @@
 <script setup>
-  import { ref, computed } from "vue";
+  import { ref } from "vue";
   import Input from "@/components/UI/Input.vue";
+  import Button from "@/components/UI/Button.vue";
+  import Card from "@/components/Card.vue";
+
+  const emit = defineEmits("onDelete");
+
+  class Child {
+    constructor(name = "", age = "") {
+      this.name = name;
+      this.age = age;
+    }
+  }
 
   const person = ref({
     name: "",
@@ -8,44 +19,77 @@
     childs: [],
   });
 
-  const child = ref({
-    name: "",
-    age: "",
-  });
+  const addItem = () => {
+    console.log("Добавляем ребёнка");
+    person.value.childs.push(new Child());
+    console.log(person.value.childs);
+  };
 
-  const saveValues = () => {
-    console.log(person.value);
+  const deleteItem = (index) => {
+    console.log("Удаляем элемент из родителя", index);
+    person.value.childs.splice(index, 1);
+    console.log(person.value.childs);
+  };
+
+  const saveData = () => {
+    console.log("Сохраняем данные", person.value);
+    localStorage.setItem("personData", JSON.stringify(person.value));
   };
 </script>
 
 <template>
   <div class="page form">
-    <section class="form__person">
+    <section class="form__section section">
       <h3>Персональные данные</h3>
       <Input
         v-model="person.name"
-        label="Имя"
-        @change="saveValues"
+        label="ФИО"
       />
       <Input
         v-model="person.age"
         label="Возраст"
-        @change="saveValues"
       />
     </section>
 
-    <section class="form__child">
-      <h3>Дети (макс. 5)</h3>
-      <Input
-        v-model="child.name"
-        label="Имя"
-        @change="saveValues"
-      />
-      <Input
-        v-model="child.age"
-        label="Возраст"
-        @change="saveValues"
-      />
+    <section class="form__section section">
+      <div class="section__header">
+        <h3>Дети (макс. 5)</h3>
+        <Button
+          v-if="person.childs.length < 5"
+          label="Добавить ребенка"
+          plus
+          class="outline"
+          @click="addItem"
+        />
+      </div>
+
+      <template v-if="person.childs.length">
+        <div class="section__list">
+          <template
+            v-for="(child, index) in person.childs"
+            :key="index"
+          >
+            {{ child }}
+            <Card
+              :child="child"
+              @onDelete="deleteItem(index)"
+            />
+          </template>
+        </div>
+      </template>
+
+      <template v-else>
+        <h3 class="empty">Список пуст</h3>
+      </template>
+
+      <template
+        v-if="person.childs.length || person.name || person.age"
+      >
+        <Button
+          label="Сохранить"
+          @click="saveData"
+        />
+      </template>
     </section>
   </div>
 </template>

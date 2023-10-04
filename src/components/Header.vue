@@ -38,6 +38,7 @@
 <style lang="scss" scoped>
   .header {
     position: fixed;
+    z-index: 1;
     width: 100%;
     height: var(--height);
     background-color: var(--white);

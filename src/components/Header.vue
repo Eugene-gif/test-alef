@@ -1,9 +1,4 @@
-<script setup>
-  import { ref } from "vue";
-  import { useRoute } from "vue-router";
-
-  const route = useRoute();
-</script>
+<script setup></script>
 
 <template>
   <header class="header">

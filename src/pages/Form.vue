@@ -1,23 +1,11 @@
 <script setup>
-  import { ref } from "vue";
+  // import { ref } from "vue";
   import Input from "@/components/UI/Input.vue";
   import Button from "@/components/UI/Button.vue";
   import Card from "@/components/Card.vue";
+  import { person, Child } from "@/models/personModel";
 
   const emit = defineEmits("onDelete");
-
-  class Child {
-    constructor(name = "", age = "") {
-      this.name = name;
-      this.age = age;
-    }
-  }
-
-  const person = ref({
-    name: "",
-    age: "",
-    childs: [],
-  });
 
   const addItem = () => {
     person.value.childs.push(new Child());

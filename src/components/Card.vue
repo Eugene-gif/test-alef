@@ -16,6 +16,7 @@
     <Input
       v-model="child.age"
       label="Возраст"
+      type="number"
     />
     <Button
       @click="$emit('onDelete')"

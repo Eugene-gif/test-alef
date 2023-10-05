@@ -1,5 +1,6 @@
 <script setup>
   import IconPlus from "@/assets/icons/IconPlus.vue";
+
   const props = defineProps({
     label: String,
     color: String,
@@ -23,9 +24,7 @@
       font-size: ${fontSize};
   `"
   >
-    <template v-if="plus">
-      <IconPlus />
-    </template>
+    <IconPlus v-if="plus" />
     {{ label || "Button" }}
   </button>
 </template>

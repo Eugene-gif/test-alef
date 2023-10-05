@@ -20,19 +20,14 @@
   });
 
   const addItem = () => {
-    console.log("Добавляем ребёнка");
     person.value.childs.push(new Child());
-    console.log(person.value.childs);
   };
 
   const deleteItem = (index) => {
-    console.log("Удаляем элемент из родителя", index);
     person.value.childs.splice(index, 1);
-    console.log(person.value.childs);
   };
 
   const saveData = () => {
-    console.log("Сохраняем данные", person.value);
     localStorage.setItem("personData", JSON.stringify(person.value));
   };
 </script>
@@ -48,6 +43,7 @@
       <Input
         v-model="person.age"
         label="Возраст"
+        type="number"
       />
     </section>
 
@@ -69,7 +65,6 @@
             v-for="(child, index) in person.childs"
             :key="index"
           >
-            {{ child }}
             <Card
               :child="child"
               @onDelete="deleteItem(index)"
@@ -79,7 +74,7 @@
       </template>
 
       <template v-else>
-        <h3 class="empty">Список пуст</h3>
+        <div class="empty">Список пуст</div>
       </template>
 
       <template
@@ -95,6 +90,31 @@
 </template>
 
 <style lang="scss" scoped>
-  @import "@/pages/styles/_page.scss";
-  @import "@/pages/styles/_Form.scss";
+  @import "@/styles/_page.scss";
+  .form {
+    .section {
+      margin-bottom: 30px;
+
+      &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 12px;
+        gap: 10px;
+        flex-wrap: wrap;
+
+        h3 {
+          margin: 0;
+        }
+
+        .btn {
+          margin-left: auto;
+        }
+      }
+
+      &__list {
+        margin-bottom: 20px;
+      }
+    }
+  }
 </style>

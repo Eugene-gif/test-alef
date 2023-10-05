@@ -72,8 +72,8 @@
         color: var(--grey);
         &.router-link-active {
           color: var(--black);
-
           transition: all 0.3s;
+          cursor: default;
         }
       }
 

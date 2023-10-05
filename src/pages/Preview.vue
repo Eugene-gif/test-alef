@@ -1,9 +1,9 @@
 <script setup>
-  import { onBeforeMount } from "vue";
+  // import { onBeforeMount } from "vue";
 
   let cachedPerson;
 
-  onBeforeMount(() => {
+  // onBeforeMount(() => {
     if (localStorage.getItem("personData")) {
       cachedPerson = JSON.parse(localStorage.getItem("personData"));
     } else {
@@ -13,7 +13,8 @@
         childs: [],
       };
     }
-  })
+    
+  // })
 </script>
 
 <template>

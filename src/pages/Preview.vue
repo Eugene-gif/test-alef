@@ -1,20 +1,15 @@
 <script setup>
-  // import { onBeforeMount } from "vue";
-
   let cachedPerson;
 
-  // onBeforeMount(() => {
-    if (localStorage.getItem("personData")) {
-      cachedPerson = JSON.parse(localStorage.getItem("personData"));
-    } else {
-      cachedPerson = {
-        name: "",
-        age: "",
-        childs: [],
-      };
-    }
-    
-  // })
+  if (localStorage.getItem("personData")) {
+    cachedPerson = JSON.parse(localStorage.getItem("personData"));
+  } else {
+    cachedPerson = {
+      name: "",
+      age: "",
+      childs: [],
+    };
+  }
 </script>
 
 <template>

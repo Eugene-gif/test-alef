@@ -16,7 +16,7 @@ const routes = [
 
 const router = createRouter({
   routes,
-  history: createWebHistory('https://eugene-gif.github.io/test-alef/')
+  history: createWebHistory('/test-alef/')
 })
 
 export default router;

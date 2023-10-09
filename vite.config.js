@@ -3,7 +3,7 @@ import { resolve } from 'path';
 import vue from '@vitejs/plugin-vue';
 
 export default defineConfig({
-  base: "/test-alef",
+  base: "/test-alef/",
   server: {
     open: true,
     host: true,
